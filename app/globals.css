@@ -124,30 +124,6 @@ h1 {
   z-index: 1;
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 0 22px;
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  color: #ffffff;
-  background: var(--accent);
-  transition:
-    transform 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
-  position: relative;
-  z-index: 1;
-}
-
-.button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(17, 17, 17, 0.16);
-}
-
 .qr-frame {
   width: min(100%, 340px);
   margin: 24px auto 0;
@@ -164,16 +140,6 @@ h1 {
   width: 100%;
   height: auto;
   border-radius: 12px;
-}
-
-.hint {
-  max-width: 26rem;
-  margin: 20px auto 0;
-  color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.5;
-  position: relative;
-  z-index: 1;
 }
 
 @keyframes driftOne {
@@ -238,10 +204,5 @@ h1 {
 
   .card {
     padding: 20px;
-  }
-
-  .button {
-    width: 100%;
-    margin-top: 18px;
   }
 }
