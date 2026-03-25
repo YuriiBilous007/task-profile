@@ -1,14 +1,14 @@
 export const contact = {
-  fullName: "Юрій Білоус",
-  firstName: "Юрій",
-  lastName: "Білоус",
+  fullName: "Yurii Taskrabbit (Handyman)",
+  firstName: "Yurii",
+  lastName: "Taskrabbit (Handyman)",
   title: "Frontend Developer",
   company: "Your Brand",
-  phoneDisplay: "+38 (099) 123-45-67",
-  phoneRaw: "+380991234567",
+  phoneDisplay: "+1-224-301-6417",
+  phoneRaw: "+12243016417",
   email: "hello@example.com",
   telegram: "yurii_bilous",
-  website: "https://your-domain.com",
+  website: "https://task-profile-ten.vercel.app",
   address: "Chicago, IL",
   note: "Відскануйте QR або натисніть кнопку, щоб зберегти контакт у телефон."
 } as const;
