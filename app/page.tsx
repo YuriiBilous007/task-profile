@@ -22,13 +22,6 @@ export default function Home() {
             priority
           />
         </div>
-        <p className="hint">
-          Сканування відкриє готовий контакт. На телефоні залишиться натиснути тільки
-          Save.
-        </p>
-        <a className="button" href={saveContactUrl}>
-          Відкрити контакт
-        </a>
       </section>
     </main>
   );

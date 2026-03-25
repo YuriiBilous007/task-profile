@@ -1,7 +1,7 @@
 export const contact = {
-  fullName: "Yurii Taskrabbit (Handyman)",
+  fullName: "Yurii Handyman",
   firstName: "Yurii",
-  lastName: "Taskrabbit (Handyman)",
+  lastName: "Handyman",
   title: "Frontend Developer",
   company: "Your Brand",
   phoneDisplay: "+1-224-301-6417",

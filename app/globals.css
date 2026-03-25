@@ -1,11 +1,11 @@
 :root {
-  --bg: #f7f7f4;
-  --surface: #ffffff;
+  --bg: #f3f1eb;
+  --surface: rgba(255, 255, 255, 0.82);
   --text: #111111;
   --muted: #686868;
-  --line: #e9e9e3;
+  --line: rgba(17, 17, 17, 0.08);
   --accent: #111111;
-  --shadow: 0 20px 60px rgba(17, 17, 17, 0.06);
+  --shadow: 0 30px 80px rgba(17, 17, 17, 0.08);
   --radius-lg: 28px;
   --radius-md: 20px;
   --max-width: 720px;
@@ -23,8 +23,42 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(198, 216, 255, 0.6), transparent 28%),
+    radial-gradient(circle at 80% 25%, rgba(255, 219, 186, 0.7), transparent 30%),
+    radial-gradient(circle at 50% 85%, rgba(211, 239, 218, 0.75), transparent 28%),
+    linear-gradient(180deg, #f8f7f2 0%, var(--bg) 100%);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 999px;
+  filter: blur(18px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: -8rem;
+  left: -10rem;
+  background: radial-gradient(circle, rgba(255, 203, 156, 0.8) 0%, rgba(255, 203, 156, 0) 65%);
+  animation: driftOne 18s ease-in-out infinite;
+}
+
+body::after {
+  right: -12rem;
+  bottom: -10rem;
+  background: radial-gradient(circle, rgba(170, 204, 255, 0.75) 0%, rgba(170, 204, 255, 0) 65%);
+  animation: driftTwo 22s ease-in-out infinite;
 }
 
 a {
@@ -38,6 +72,8 @@ img {
 }
 
 .page-shell {
+  position: relative;
+  z-index: 1;
   display: grid;
   place-items: center;
   width: min(calc(100% - 32px), var(--max-width));
@@ -47,6 +83,8 @@ img {
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
   width: min(100%, 460px);
   padding: 28px;
   text-align: center;
@@ -54,6 +92,18 @@ img {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  animation: cardEnter 720ms ease-out;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.52), transparent 45%),
+    linear-gradient(320deg, rgba(255, 255, 255, 0.2), transparent 40%);
+  pointer-events: none;
 }
 
 .label {
@@ -70,6 +120,8 @@ h1 {
   font-size: clamp(2.25rem, 8vw, 3.75rem);
   line-height: 1;
   letter-spacing: -0.05em;
+  position: relative;
+  z-index: 1;
 }
 
 .button {
@@ -85,11 +137,15 @@ h1 {
   transition:
     transform 180ms ease,
     background-color 180ms ease,
-    border-color 180ms ease;
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+  position: relative;
+  z-index: 1;
 }
 
 .button:hover {
   transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(17, 17, 17, 0.16);
 }
 
 .qr-frame {
@@ -99,6 +155,9 @@ h1 {
   background: white;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
+  position: relative;
+  z-index: 1;
+  animation: qrFloat 5s ease-in-out infinite;
 }
 
 .qr-frame img {
@@ -113,6 +172,62 @@ h1 {
   color: var(--muted);
   font-size: 0.98rem;
   line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes driftOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(4rem, 3rem, 0) scale(1.08);
+  }
+}
+
+@keyframes driftTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-3rem, -4rem, 0) scale(1.1);
+  }
+}
+
+@keyframes qrFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .card,
+  .qr-frame {
+    animation: none;
+  }
 }
 
 @media (max-width: 640px) {
